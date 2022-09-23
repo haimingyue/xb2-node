@@ -1,7 +1,14 @@
 const http = require('http');
 
-const server = http.createServer((request, response) => { 
-    response.write('hello~');
+const server = http.createServer((request, response) => {
+    const data = {
+        id: 1
+    }
+    const jsonData = JSON.stringify(data)
+    response.writeHead(200, {
+        'Content-Type': 'application/json; chatset="utf-8'
+    })
+    response.write(jsonData);
     response.end();
 });
 
