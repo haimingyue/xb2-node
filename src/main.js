@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+
+/**
+ * 使用JSON中间件
+ */
+app.use(express.json());
+
 app.listen(port, () => {
 	console.log('服务已启动');
 });
@@ -28,3 +34,22 @@ app.get('/posts/:postId', (req, res) => {
     let d = data.filter(i => i.id == postId)[0]
 	res.send(d);
 });
+
+/**
+ * 创建
+ */
+
+app.post('/posts', (request, response) => {
+	const { content } = request.body
+
+	response.status(201)
+
+	console.log(request.headers['sing-along'])
+
+	response.set('Sing-Along', 'HUATIANCUO')
+
+	// 做出响应
+	response.send({
+		message: `成功创建了${content}`
+	})
+})
