@@ -43,3 +43,9 @@ tsconfig.json
 ### 检视文件变化
 
 npm install tsc-watch@4.2.3 -S
+
+### 环境变量
+npm install dotenv@8.2.0 --S
+
+
+服务的作用：缓解控制器的压力。有些事情放在服务里面去做
