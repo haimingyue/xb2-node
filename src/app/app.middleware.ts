@@ -40,6 +40,14 @@ export const defaultErrorHandler = (
       statusCode = 409;
       message = '用户名已经被占用';
       break;
+    case 'USER_DOSE_NOT_EXIST':
+      statusCode = 400;
+      message = '用户不存在';
+      break;
+    case 'PASSWORD_DOSE_NOT_EXIST':
+      statusCode = 400;
+      message = '用户密码不正确';
+      break;
     default:
       statusCode = 500;
       message = '服务暂时出了一点问题 ~~ 🌲';
