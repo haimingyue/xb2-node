@@ -28,10 +28,12 @@ export const store = async (
 ) => {
   // 准备数据
   const { title, content } = request.body;
+  const { id: userId } = request.user;
   try {
     const data = await createPost({
       title,
       content,
+      userId,
     });
     response.status(201).send(data);
   } catch (error) {

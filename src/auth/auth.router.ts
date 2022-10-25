@@ -3,7 +3,7 @@
  */
 import express from 'express';
 import * as authController from './auth.controller';
-import { validateLoginData } from './auth.middleware';
+import { authGuard, validateLoginData } from './auth.middleware';
 
 const router = express.Router();
 
@@ -11,6 +11,8 @@ const router = express.Router();
  * 用户登录
  */
 router.post('/login', validateLoginData, authController.login);
+
+router.post('/auth/validate', authGuard, authController.validate);
 
 /**
  * 导出路由
