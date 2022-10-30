@@ -91,10 +91,6 @@ export const accessControl = (options: AccessControlOptions) => {
 
     // 当前用户id
     const { id: userId } = request.user;
-    console.log(
-      '🚀 ~ file: auth.middleware.ts ~ line 94 ~ return ~ userId',
-      userId,
-    );
     if (userId === 1) {
       return next();
     }

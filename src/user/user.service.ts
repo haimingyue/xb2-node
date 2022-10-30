@@ -41,7 +41,6 @@ export const getUserByName = async (
         from user
         where name = ?
     `;
-  console.log('statement', statement);
   // 执行查询
   const [data] = await connection.promise().query(statement, name);
   // 提供数据

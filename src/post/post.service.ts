@@ -17,7 +17,6 @@ export const getPosts = async () => {
     LEFT JOIN user on user.id = post.userId
     `;
   const [data] = await connection.promise().query(statement);
-  console.log('data', data);
   return data;
 };
 
@@ -41,7 +40,6 @@ export const createPost = async (post: PostModel) => {
  */
 
 export const updatePost = async (postId: number, post: PostModel) => {
-  console.log(post);
   // 准备一段查询
   const statement = `
 		UPDATE post
