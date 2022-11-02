@@ -6,6 +6,7 @@ import { TagModel } from './tag.model';
  */
 
 export const createTag = async (tag: TagModel) => {
+  console.log('🚀 ~ file: tag.service.ts ~ line 9 ~ createTag ~ tag', tag);
   // 准备查询sql
   const statement = `
         INSERT INTO tag
@@ -13,7 +14,7 @@ export const createTag = async (tag: TagModel) => {
     `;
 
   // 执行查询
-  const [data] = connection.promise().query(statement, tag);
+  const [data] = await connection.promise().query(statement, tag);
   // 返回数据
   return data as any;
 };
@@ -29,7 +30,7 @@ export const getTagByTagName = async (tagName: string) => {
         WHERE name = ?
     `;
   // 执行查询
-  const [data] = connection.promise().query(statement);
+  const [data] = await connection.promise().query(statement, tagName);
   // 返回数据
   return data[0];
 };
