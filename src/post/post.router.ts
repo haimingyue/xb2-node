@@ -15,6 +15,20 @@ router.get('/posts', requestUrl, postController.index);
  */
 router.post('/posts', authGuard, postController.store);
 
+router.post(
+  '/posts/:postId/tag',
+  authGuard,
+  accessControl({ possession: true }),
+  postController.storePostTag,
+);
+
+router.delete(
+  '/posts/:postId/tag',
+  authGuard,
+  accessControl({ possession: true }),
+  postController.destroyPostTag,
+);
+
 /**
  * 更新内容
  */
