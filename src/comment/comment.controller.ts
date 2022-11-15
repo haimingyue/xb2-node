@@ -1,6 +1,11 @@
 import { Response, Request, NextFunction } from 'express';
 
-import { createComment, isReplyComment } from './comment.service';
+import {
+  createComment,
+  isReplyComment,
+  updateComment,
+  deleteComment,
+} from './comment.service';
 
 /**
  * 发表评论
@@ -63,6 +68,53 @@ export const reply = async (
     const data = await createComment(comment);
 
     response.status(201).send(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * 修改评论
+ */
+
+export const update = async (
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  // 准备数据
+  const { commentId } = request.params;
+  const { content } = request.body;
+
+  const comment = {
+    id: parseInt(commentId, 10),
+    content,
+  };
+
+  console.log('comment', comment);
+  try {
+    console.log(updateComment);
+    const data = await updateComment(comment);
+    response.send(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * 删除评论
+ */
+
+export const destroy = async (
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  // 准备数据
+  const { commentId } = request.params;
+  try {
+    const data = await deleteComment(parseInt(commentId, 10));
+    response.send(data);
   } catch (error) {
     next(error);
   }
