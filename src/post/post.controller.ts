@@ -8,6 +8,7 @@ import {
   postHasTag,
   createPostTag,
   deletePostTag,
+  getPostsTotalCount,
 } from './post.service';
 
 import { TagModel } from '../tag/tag.model';
@@ -22,9 +23,19 @@ export const index = async (
   next: NextFunction,
 ) => {
   try {
+    const totalCount = await getPostsTotalCount({
+      filter: request.filter,
+    });
+    response.header('X_Total-Count', totalCount);
+  } catch (error) {
+    next(error);
+  }
+
+  try {
     const posts = await getPosts({
       sort: request.sort,
       filter: request.filter,
+      pagination: request.pagination,
     });
     response.send(posts);
   } catch (error) {
