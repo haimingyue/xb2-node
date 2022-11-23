@@ -15,7 +15,7 @@ router.get('/posts', sort, filter, paginate, postController.index);
  */
 router.post('/posts', authGuard, postController.store);
 
-router.post(
+router.patch(
   '/posts/:postId/tag',
   authGuard,
   accessControl({ possession: true }),
